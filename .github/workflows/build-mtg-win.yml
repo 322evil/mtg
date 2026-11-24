@@ -7,11 +7,11 @@ jobs:
       - uses: actions/setup-go@v5
         with:
           go-version: '1.21'
-      - name: Clone and Build MTG v1.0.11
+      - name: Install MTG v1.0.11
+        shell: pwsh
         run: |
-          git clone --depth 1 --branch v1.0.11 https://github.com
-          cd mtg
-          go build -o ../mtg.exe .
+          $env:GOBIN = (Get-Location).Path
+          go install ://github.com
       - uses: actions/upload-artifact@v4
         with:
           name: mtg-windows
