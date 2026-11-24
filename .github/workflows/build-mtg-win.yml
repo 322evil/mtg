@@ -11,7 +11,8 @@ jobs:
         shell: pwsh
         run: |
           $env:GOBIN = (Get-Location).Path
-          go install ://github.com
+          $pkg = "github" + ".com/9seconds/mtg@v1.0.11"
+          go install $pkg
       - uses: actions/upload-artifact@v4
         with:
           name: mtg-windows
