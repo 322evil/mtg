@@ -1,0 +1,17 @@
+name: Build MTG v1 Windows
+on: [workflow_dispatch]
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: v1.0.11
+      - uses: actions/setup-go@v5
+        with:
+          go-version: '1.21'
+      - run: go build -o mtg.exe .
+      - uses: actions/upload-artifact@v4
+        with:
+          name: mtg-windows
+          path: mtg.exe
